@@ -1,0 +1,17 @@
+<table>
+	<tr>
+		<th>Question title</th>
+		<th>Your Answer</th>
+	</tr>
+
+<% @answers.each do |a| %>
+	<tr>
+		<% question_id = a.question_id %>
+		<% question = Question.find(question_id) %>
+		<td><%= question.title%></td>
+		<td><a href="/answers/<%=a.id%>"><%= a.content %></a></td>
+		
+	</tr>
+<% end %>
+</table>
+

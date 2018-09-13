@@ -40,4 +40,4 @@ end
 ```
 2. Remove `set :run, true` in `app.rb`
 3. Run `bundle install`
-4. Run server with `shotgun app.rb` or `bundle exec shotgun app.rb`
+4. Run server with `shotgun app.rb` or `bundle exec shotgun app.rb`# testbnb

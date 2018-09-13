@@ -1,2 +1,22 @@
 <h1>Quora Clone</h1>
-<%= "Welcome #{@name}!" %>
+<br>
+<%= "Today is #{@date}" %>
+
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Question</th>
+		<th>User</th>
+	</tr>
+
+<% questions = Question.all %>
+<% questions.each do |q| %>
+	<tr>
+		<td><a href="/questions/<%=q.id%>"> <%= q.title %></a></td>
+		<td><%= q.question %></td>
+		<%# user = User.find(user_id) %>
+		<td><%= q.user.email %></td>
+		
+	</tr>
+<% end %>
+</table>

@@ -1,0 +1,12 @@
+<% question = Question.find(@answer.question_id)%>
+<h3><%= question.title%></h3>
+
+<p><%= @answer.content%></p>
+
+<P>Edit your answer!</P>
+<form method="POST" action="/answers/<%= @answer.id%>/edit">
+	<textarea name="content" cols="50" rows="10"></textarea><br>
+	<br>
+	<input type="submit" value="Submit">
+</form>
+

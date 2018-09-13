@@ -9,8 +9,43 @@
     <link rel="stylesheet" type="text/css" href="css/application.css">
   </head>
   <body>
-
+    <a href="/">Home</a>
+    <% if logged_in? %>
+    <a href="/logout">Log out</a>
+    <a href="/users/<%= current_user.id %>">My profile</a>
+    <% else %>
+    <a href="/sign_up">Sign up</a>
+    <a href="/login">Log in</a>
+    <% end %>
     <%= yield %>
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <!-- <script type="text/javascript" src="../public/js/main.js"></script> -->
+  <script type="text/javascript">
+    
+
+  
+    $(".like-button").submit(function(e){
+      e.preventDefault();
+      // console.log(this.action);
+      // console.log(this.method);
+      console.log(this)
+      let id = this.id
+      $.ajax({
+        type: this.method,
+        url: this.action,})
+        .done(function(response){
+          let data = JSON.parse(response)
+          console.log(data.count);
+          number = id.match(/\d+/g).map(Number)[0]
+          let $likes = $('#likes'+ number)
+          console.log($likes)
+          $likes.html('👍 ' + data.count)
+          })
+      }); 
+  </script>
 
   </body>
 </html>

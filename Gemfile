@@ -16,6 +16,8 @@ gem 'rake'
 
 gem 'thin'
 
+gem 'thumbs_up'
+
 # group :development do
 #   gem "shotgun"
 # end
