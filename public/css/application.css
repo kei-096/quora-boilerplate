@@ -1,0 +1,16 @@
+table {
+	border-collapse: collapse;
+}
+
+table th, table td {
+	border: solid 2px black;
+}
+
+.title {
+	text-align: center;
+	color: blue
+}
+
+body {
+	background-color: blue;
+}

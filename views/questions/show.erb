@@ -1,0 +1,59 @@
+<h3 class="title"><%= @question.title%></h3>
+
+<p><%= @question.question%></p>
+
+<% if @question.user_id == current_user.id %>
+<form method="POST" action="/questions/<%= @question.id%>/delete">
+	<button type="submit" value="Delete">Delete</button>
+</form>
+
+<% else %>
+<p>Answer to this question!</p>
+
+<form method="POST" action="/answers/<%= @question.id%>/<%= current_user.id %>/new">
+	<textarea name="content" cols="50" rows="10"></textarea><br>
+	<br>
+	<input type="submit" value="Submit">
+</form>
+
+<% end %>
+
+<hr>
+<% num = 1 %>
+<% answers = @question.answers%>
+<% answers.each do |a|%>
+	<table>
+		<tr>
+			<th>Answer</th>
+			<th>User</th>
+		</tr>
+		<tr>
+			<td><p><%= a.content %></p></td>
+			<% id = a.user_id %>
+			<% user = User.all.find(id) %>
+			<td><%= user.email %></td>
+		</tr>
+	</table>
+	<% vote_count = Vote.where(answer_id: a.id).count%>
+
+	<!-- <form method="POST" action="/votes/<%= a.id%>/<%= current_user.id%>" id="like-button"> -->
+	<form method="POST" action="/votes/<%= a.id%>/<%= current_user.id%>" class="like-button"
+		id="button-of-likes<%= + num%>">	
+		<input type="submit" value="Like">
+	</form>
+
+
+
+	<!-- Shows remove button if current user has voted -->
+	<% x = Vote.where(answer_id: a.id)%>
+	<% y = x.where(user_id: current_user.id).count%>
+	<% if y != 0 %>
+		<form method="POST" action="/votes/<%= a.id%>/<%= current_user.id%>/delete">
+			<input type="submit" value="Remove Like">
+		</form>
+
+	<% end %>
+	<p id="likes<%= + num%>">👍 <%= vote_count%></p>
+	<% num += 1 %>
+<% end %>
+

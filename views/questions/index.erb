@@ -1,0 +1,15 @@
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Question</th>
+	</tr>
+
+<% @questions.each do |q| %>
+	<tr>
+		<td><a href="/questions/<%=q.id%>"> <%= q.title %></a></td>
+		<td><%= q.question %></td>
+		
+	</tr>
+<% end %>
+</table>
+

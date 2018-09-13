@@ -1,0 +1,12 @@
+<% question = Question.find(@answer.question_id)%>
+<h3><%= question.title%></h3>
+
+<p><%= @answer.content%></p>
+
+<form method="POST" action="/answers/<%= @answer.id%>/delete">
+	<button type="submit" value="Delete">Delete</button>
+</form>
+
+<form method="GET" action="/answers/<%= @answer.id%>/edit">
+	<button type="submit" value="Edit">Edit</button>
+</form>
